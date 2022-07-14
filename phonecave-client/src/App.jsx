@@ -7,6 +7,7 @@ import PhonesListPage from './pages/PhonesListPage';
 
 const App = () => {
   const [phones, setPhones] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     loadPhones().then((data) => {
@@ -15,23 +16,26 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" style={{ width: '400px', margin: '0 auto' }}>
       <Navbar />
 
-      <div className="container">
-        <div className="row">
+      <div className="container" style={{ marginTop: '1rem' }}>
+        <div className="row" style={{ margin: '0 auto' }}>
           <div className="col">
             <PhonesListPage phones={phones} />
           </div>
 
           <div className="col">
-            <Routes>
-              {/* <Route
+            {(!isLoading && (
+              <Routes>
+                {/* <Route
                 path="/phones"
                 element={<PhonesListPage phones={phones} />}
               /> */}
-              <Route path="/phones/:id" element={<SinglePhonePage />} />
-            </Routes>
+                <Route path="/phones/:id" element={<SinglePhonePage />} />
+              </Routes>
+            )) ||
+              'Wait, it`s loading!'}
           </div>
         </div>
       </div>

@@ -17,6 +17,9 @@ const SinglePhonePage = () => {
 
   return (
     <div>
+      <div>
+        <img src={`../images/${phone.imageFileName}`} alt={phone.name} />
+      </div>
       <h3>{phone.name}</h3>
       <p>{phone.descripion}</p>
       <small>{phone.price}</small>

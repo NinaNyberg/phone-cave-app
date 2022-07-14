@@ -17,12 +17,17 @@ const PhonesListPage = ({ phones }) => {
 
   return (
     <div>
-      Phones List
+      <h3>Phone List</h3>
       <ul>
         {Boolean(phones.length) &&
           phones.map((item) => (
-            <li key={item._id}>
-              <Link to={`/phones/${item._id}`}>{item.name}</Link>
+            <li key={item._id} style={{ listStyle: 'none' }}>
+              <Link
+                style={{ textDecoration: 'none', color: 'black' }}
+                to={`/phones/${item._id}`}
+              >
+                {item.name}
+              </Link>
             </li>
           ))}
       </ul>
