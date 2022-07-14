@@ -7,10 +7,6 @@ import PhonesListPage from './pages/PhonesListPage';
 
 const App = () => {
   const [phones, setPhones] = useState([]);
-  // const [phone, setPhone] = useState([]);
-
-  // const { id } = useParams();
-  // console.log(id);
 
   useEffect(() => {
     loadPhones().then((data) => {
@@ -18,27 +14,22 @@ const App = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   loadSinglePhone(id).then((data) => {
-  //     console.log(data);
-  //     setPhone(data);
-  //   });
-  // }, [id]);
-
   return (
     <div className="App">
       <Navbar />
 
       <div className="container">
         <div className="row">
-          <div className="col">{/* <PhonesListPage phones={phones} /> */}</div>
+          <div className="col">
+            <PhonesListPage phones={phones} />
+          </div>
 
           <div className="col">
             <Routes>
-              <Route
+              {/* <Route
                 path="/phones"
                 element={<PhonesListPage phones={phones} />}
-              />
+              /> */}
               <Route path="/phones/:id" element={<SinglePhonePage />} />
             </Routes>
           </div>
