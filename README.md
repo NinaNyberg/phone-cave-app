@@ -1,18 +1,6 @@
 # phone-cave-app
 
-#Model:
 
-Phone:
-
-- name: string
-- manufacturer: string
-- description: string
-- color: string
-- price: number
-- image: string
-- screen: string
-- processor: string
-- ram: number
 
 #server-side routes:
 
