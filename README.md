@@ -1,8 +1,9 @@
 # phone-cave-app
 
-Model:
+#Model:
 
-Phone
+Phone:
+
 - name: string
 - manufacturer: string
 - description: string
@@ -13,16 +14,20 @@ Phone
 - processor: string
 - ram: number
 
-server-side routes:
-GET /phones - get all the phones from the list
+#server-side routes:
+
+GET /phones - get all the phones from the list;
+
 get /phones/:id - get a single phone
 
-client-side pages:
+#client-side pages:
 
-PhonesListPage - display all the phones from the list
+PhonesListPage - display all the phones from the list;
+
 SinglePhonePage - show single phone details
 
-services:
+#services:
 
-loadPhones() - get request to /phones to load a list of phones
+loadPhones() - get request to /phones to load a list of phones;
+
 loadSinglePhone() - get request to `/phones/${id}` to load a single phone`s details
