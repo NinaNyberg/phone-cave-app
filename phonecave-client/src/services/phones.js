@@ -1,9 +1,4 @@
-import axios from 'axios';
-
-const api = axios.create({
-  baseURL: process.env.REACT_APP_REST_API_URL,
-  withCredentials: true
-});
+import api from './api';
 
 export const loadPhones = () =>
   api.get('/phones').then((response) => response.data);

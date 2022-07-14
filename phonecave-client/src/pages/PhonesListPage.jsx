@@ -5,25 +5,26 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { loadPhones } from '../services/phones';
 
-const PhonesListPage = () => {
-  const [phones, setPhones] = useState([]);
+const PhonesListPage = ({ phones }) => {
+  // const [phones, setPhones] = useState([]);
 
-  useEffect(() => {
-    loadPhones().then((response) => {
-      console.log(response.data);
-      setPhones(response.data);
-    });
-  });
+  // useEffect(() => {
+  //   loadPhones().then((response) => {
+  //     console.log(response.data);
+  //     setPhones(response.data);
+  //   });
+  // });
 
   return (
     <div>
-      PhonesListPage
+      Phones List
       <ul>
-        {phones.map((phone) => (
-          <li>
-            <Link to={`/phones/${phone._id}`}>{phone.name}</Link>
-          </li>
-        ))}
+        {Boolean(phones.length) &&
+          phones.map((item) => (
+            <li key={item._id}>
+              <Link to={`/phones/${item._id}`}>{item.name}</Link>
+            </li>
+          ))}
       </ul>
     </div>
   );

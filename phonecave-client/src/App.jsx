@@ -1,38 +1,50 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
-import HomePage from './pages/HomePage';
-import RegisterPage from './pages/RegisterPage';
-import LogInPage from './pages/LogInPage';
-
 import Navbar from './components/Navbar';
-import AuthenticationContext from './context/authentication';
-import { loadUserInformation } from './services/authentication';
-import PhonesListPage from './pages/PhonesListPage';
 import SinglePhonePage from './pages/SinglePhonePage';
+import { loadPhones, loadSinglePhone } from './services/phones';
+import PhonesListPage from './pages/PhonesListPage';
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [phones, setPhones] = useState([]);
+  // const [phone, setPhone] = useState([]);
+
+  // const { id } = useParams();
+  // console.log(id);
 
   useEffect(() => {
-    loadUserInformation().then((data) => {
-      setUser(data.user);
+    loadPhones().then((data) => {
+      setPhones(data.phones);
     });
   }, []);
 
+  // useEffect(() => {
+  //   loadSinglePhone(id).then((data) => {
+  //     console.log(data);
+  //     setPhone(data);
+  //   });
+  // }, [id]);
+
   return (
-    <AuthenticationContext.Provider value={{ user, setUser }}>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/log-in" element={<LogInPage />} />
-          <Route path="/phones" element={<PhonesListPage />} />
-          <Route path="/phones/:id" element={<SinglePhonePage />} />
-        </Routes>
-      </BrowserRouter>
-    </AuthenticationContext.Provider>
+    <div className="App">
+      <Navbar />
+
+      <div className="container">
+        <div className="row">
+          <div className="col">{/* <PhonesListPage phones={phones} /> */}</div>
+
+          <div className="col">
+            <Routes>
+              <Route
+                path="/phones"
+                element={<PhonesListPage phones={phones} />}
+              />
+              <Route path="/phones/:id" element={<SinglePhonePage />} />
+            </Routes>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
